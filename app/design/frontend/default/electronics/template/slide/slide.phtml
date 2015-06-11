@@ -1,0 +1,55 @@
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="<?php echo $this->getSkinUrl('slide/demo.css') ?>">
+  <script src="<?php echo $this->getSkinUrl('slide/responsiveslides.min.js') ?>"></script>
+  <script>
+    $(function () {
+      $("#slider4").responsiveSlides({
+        auto: <?php if(Mage::getStoreConfig('slide/settings/show_start') == 1) {echo "true"; }else {echo "false" ;} ?>,	
+        pager: false,
+        nav: <?php if(Mage::getStoreConfig('slide/settings/nav_button') == 1) {echo "true"; }else {echo "false" ;} ?>,
+        speed: <?php echo Mage::getStoreConfig('slide/defaultconfig/delay'); ?>,
+        namespace: "callbacks",
+      });
+   });
+  </script>
+<?php
+	$slideCollection = Mage::getModel('slide/slide')->getCollection();
+	$configData = Mage::getStoreConfig('slide');
+	$i = 0;
+?>
+<style type="text/css">
+#responsive_wrapper .callbacks_container .rslides img {
+  display: block;
+  height: <?php echo Mage::getStoreConfig('slide/defaultconfig/image_height'); ?>px;
+  float: left;
+  width: <?php echo Mage::getStoreConfig('slide/defaultconfig/image_width'); ?>px;
+  border: 0 ;
+  }
+</style>
+  <div id="responsive_wrapper">
+
+    <div class="callbacks_container">
+      <ul class="rslides" id="slider4">
+      <?php
+						$i = 0;
+						foreach ($slideCollection as $slide):
+							$i++;
+						?>
+        <li>
+        <a href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) ."slidebanners/". $slide['filename']?>" title="<?php echo $slide['title']?>">
+          <img  src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) ."slidebanners/". $slide['filename']?>" />
+          
+          <?php if ($configData['settings']['show_description'] == '1'):?>
+							<p class="caption" style="color:<?=Mage::getStoreConfig('slide/settings/colText');?>; background-color:<?=Mage::getStoreConfig('slide/settings/bg_color');?>;font-size:<?=Mage::getStoreConfig('slide/settings/fon_size');?>px;"><?php echo $slide['content']; ?>
+</p> 
+								 
+								<?php endif;?>       </a>                    
+        </li>
+        <?php endforeach; ?>	
+        
+        
+      </ul>
+    </div>
+
+  </div>

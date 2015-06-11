@@ -24,29 +24,53 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<footer>
-<article class="footer_article">
-<section cite="footer_first_section">
 <div class="footer-container">
-    <div class="footer container">
-<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('bottom_links')->toHtml() ?>
-        <?php //echo $this->getChildHtml() ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="footer">
+                    <p id="back-top"><a href="#top"><span></span></a> </p>
+                    <div class="footer-cols-wrapper">
+                        <div class="footer-col">
+                            <div class="footer-col-links"><h4><?php echo $this->__('Information') ?></h4>
+                                <div class="footer-col-content">
+                                    <?php echo $this->getChildHtml('cms_footer_links') ?>
+                                    <?php echo $this->getChildHtml('footer_links') ?>
+                                </div>
+                            </div>
+
+                            <div class="footer-col-links">
+                                <h4><?php echo $this->__('Test') ?></h4>
+                                <div class="footer-col-content">
+                                    <?php echo $this->getChildHtml('cms_footer_links') ?>
+                                    <?php echo $this->getChildHtml('footer_links') ?>
+                                </div>
+                            </div>
+                        </div>
+                        <?php echo $this->getChildHtml('footer_list') ?>
+                        <div class="footer-col">
+                            <?php echo $this->getChildHtml('left.newsletter'); ?>
+                            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('list_icon')->toHtml() ?>
+                            <div class="clear"></div>
+                            <?php echo $this->getChildHtml('paypal.partner.right.logo'); ?>
+                            <div>
+                                <img id="vorkasse-stoerer-footer" alt="3% Skonto bei Vorkasse" src="<?php echo $this->getSkinUrl('images/stoerer_startseite.png')?>"/>
+                            </div>
+
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <address><?php echo $this->getCopyright() ?></address>
+                    <?php echo $this->getChildHtml('store_switcher') ?>
+                    <div class="clear"></div>
+                    <?php $current_page = Mage::app()->getFrontController()->getRequest()->getRouteName();
+                    if ($current_page == 'cms'):
+                        echo '<!--{%FOOTER_LINK}-->';
+                    endif;
+                    ?>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-</section>
-<section cite="footer_second_section">
-
-<div class="footer container">
-<div class="footer_border"></div>
-        <address class="span4"><?php echo $this->getCopyright() ?></address>
-<div class="span4">
-<?php echo $this->getChildHtml('store_switcher') ?>
-</div>
-<div class="share_links span4">
-<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('share_links')->toHtml() ?> 
-</div>
-<p class="poweredby" style="clear: both; text-align: right; line-height: 10px;">Designed by <a class="bsetec" title="BseTec Themes" target="_blank" href="http://bsetec.com" style="display: inline; color: rgb(235, 86, 155);">BseTec Themes</a> | Powered by <a class="magento" title="Magento"  target="_blank" href="http://magentocommerce.com" style="display: inline; color: rgb(239, 59, 41);">Magento</a></p>
-</div>
-</section>
-</article>
-</footer>

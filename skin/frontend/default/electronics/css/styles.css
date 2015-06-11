@@ -2028,3 +2028,13 @@ em.open-close {background: url("../images/electronics/arrow_open.png") no-repeat
 .item_padd{ padding:10px; border:1px solid #ddd; background:#FFF; position:relative;margin-bottom: 40px;}
 .products-grid .short_desc{padding: 15px 0pt;}
 .listdetaicart_wrap{position:absolute; left:0; width:100%;bottom: -20px;}
+
+
+/*Footer Links*/
+.footer-col-links
+{
+    display: block;
+    float: left;
+    margin-right: 120px;
+}
+/*Footer Links*/
